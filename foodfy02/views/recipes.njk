@@ -1,0 +1,19 @@
+{% extends 'layout.njk' %}
+
+{% block main %}
+
+    <main id="main-recipes">
+        <div class="cards-most-viewed">
+
+            {% for card in recipes %}
+                <div class="card">
+                    <img src="{{card.image}}" alt="TBB">
+                    <h3>{{card.title}}</h3>
+                    <p>{{card.author}}</p>
+                </div>
+            {% endfor %}
+            
+        </div>
+    </main>
+    
+{% endblock %}

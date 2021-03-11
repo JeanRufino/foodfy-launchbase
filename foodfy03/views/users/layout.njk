@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block title %}
+    {% endblock %}
+
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header id="header">
+        <a href="/">
+            <img src="/logo.png" alt="Logo Foodfy">
+        </a>
+        <div class="menu">
+            <a id="about" href="/about">Sobre</a>
+            <a id="recipes" href="/recipes">Receitas</a>
+            <a id="admin" href="/admin/recipes">Admin</a>
+        </div>
+    </header>
+    
+    {% block main %}
+    {% endblock %}
+
+    <footer id="footer">
+        <p>Todos os direitos reservados, receitas Foodfy</p>
+    </footer>
+
+    <script src="/script.js"></script>
+    <script>
+        const cards = document.querySelectorAll('.card');
+
+        for (let i = 0; i < cards.length; i++) {
+            const card = cards[i];
+            const id = i;
+
+            card.addEventListener('click', function() {
+                window.location.href = `/recipes/${id}`;        
+            });    
+        };
+    </script>
+</body>
+</html>

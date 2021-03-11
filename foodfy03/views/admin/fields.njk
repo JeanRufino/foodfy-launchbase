@@ -1,0 +1,117 @@
+    <div class="field">
+        <label for="image">Imagem da receita</label>
+        <input 
+            name="image"
+            id="image" 
+            type="url" 
+            placeholder="" 
+            value="{{recipe.image}}">
+    </div>
+
+    <div class="field">
+        <label for="title">Título da receita</label>
+        <input 
+            name="title"
+            id="title" 
+            type="text" 
+            placeholder="" 
+            value="{{recipe.title}}">
+    </div>
+
+    <div class="field">
+        <label for="author">Autor</label>
+        <input 
+            name="author"
+            id="auhor" 
+            type="text" 
+            placeholder="" 
+            value="{{recipe.author}}">
+    </div>
+
+    <div class="field">
+        <label for="ingredients">Ingredientes</label>
+
+        {% if recipe.ingredients == null %}
+            <input
+                name="ingredients[]"
+                id="ingredients" 
+                type="text"
+                placeholder=""
+                value="{{ingredient}}"
+                >
+        {% endif %}
+
+        {% for ingredient in recipe.ingredients %}
+            <input
+                name="ingredients[]"
+                id="ingredients" 
+                type="text"
+                placeholder=""
+                value="{{ingredient}}"
+                >
+        {% endfor %}
+
+        <span class="addButton">Adicionar novo ingrediente</span>
+    </div>
+
+    <div class="field">
+        <label for="preparation">Modo de preparo</label>
+
+        {% if recipe.preparation == null %}
+            <input
+                name="preparation[]"
+                id="preparation" 
+                type="text"
+                placeholder=""
+                value="{{preparation}}"
+                >
+        {% endif %}
+
+        {% for preparation in recipe.preparation %}
+            <input
+                name="preparation[]"
+                id="preparation" 
+                type="text"
+                placeholder=""
+                value="{{preparation}}"
+                >
+        {% endfor %}
+
+        <span class="addButton">Adicionar novo passo</span>
+    </div>
+
+    <div class="field">
+        <label for="info">Informações adicionais</label>
+        <textarea 
+            name="information"
+            id="info" 
+            form="main"
+            type="textarea"
+            rows="6"
+            placeholder="">
+            {{recipe.information}}
+        </textarea>
+    </div>
+
+    <script>
+        const addButtons = document.querySelectorAll('.addButton');
+
+        function addFields(event) {
+            const inputs = event.target.parentNode.querySelectorAll('input');
+            const span = event.target.parentNode.querySelector('span');
+            const lastInput = inputs[inputs.length - 1];
+            let clonedInput = lastInput.cloneNode(); 
+            clonedInput.value = '';
+
+            if(lastInput.value == '') {
+                return false;
+            } else {
+                event.target.parentNode.insertBefore(clonedInput, span);
+            }
+        }
+
+        for(let button of addButtons) {
+            button.addEventListener('click', addFields)
+        }
+        
+    </script>   
